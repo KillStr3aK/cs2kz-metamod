@@ -74,9 +74,10 @@ bool KZPlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 	g_pKZPlayerManager->ResetPlayers();
 	if (late)
 	{
-		KZ::misc::OnServerActivate();
 		g_steamAPI.Init();
 		g_pKZPlayerManager->OnLateLoad();
+		// We need to reset the map for mapping api to properly load in.
+		utils::ResetMap();
 	}
 	return true;
 }
